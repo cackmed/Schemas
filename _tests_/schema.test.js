@@ -26,4 +26,5 @@ describe('Schema test module', () => {
       favoriteWord: 'false'
     });
   });
+  
 });
