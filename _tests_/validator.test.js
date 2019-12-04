@@ -1,6 +1,6 @@
 const Validator  = require('../lib/validator.js');
 
-describe('Validator', () => {
+describe('Validator module tests', () => {
   let validator;
 
   describe('required fields', () => {
@@ -30,6 +30,31 @@ describe('Validator', () => {
 
       expect(validator.validate(person)).toEqual(23);
     });
+  });
+  describe('optional fields response', () => {
+    beforeAll(() => {
+      validator = new Validator('age', {
+        type: Number
+      });
+    });
+    it('returns the field', () => {
+      const person = {
+        name: 'Joe',
+        age: 23,
+        feathers: false
+      };
 
+      expect(validator.validate(person)).toEqual(23);
+    });
+
+    it('returns the field', () => {
+      const person = {
+        name: 'Joe',
+        feathers: false
+      };
+
+      expect(validator.validate(person)).toBeNull();
+
+    });
   });
 });
