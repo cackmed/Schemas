@@ -1,25 +1,23 @@
-const {
-  nameValidator,
-  ageValidator,
-  featherValidator,
-} = require('../lib/validator.js');
-const Person = {
-  name: 'Joe',
-  age: 23,
-  feathers: false
-};
-const who = {
-  what: 'hi'
-};
+const Validator  = require('../lib/validator.js');
 
-describe('validation method module', () => {
-  describe('validator methods tests', () => {
-    it('nameValidator works', () => {
-      expect(nameValidator.validate(Person)).toEqual(Person.name);
-      expect(nameValidator.validate(who)).toEqual(Error);
-      expect(ageValidator.validate(Person)).toEqual(Person.age);
-      expect(featherValidator.validate(Person)).toEqual(Person.feathers);
+describe('Validator method module', () => {
+  let validator;
+  describe('required fields', () => {
+    beforeAll(() => {
+      validator = new Validator('age', {
+        type: Number,
+        required: true
+      });
     });
+  });
+
+  it('returns the field', () => {
+    const person = {
+      name: 'Joe',
+      age: 23,
+      feathers: false
+    };
+    expect(validator.validate(person)).toEqual(23);
   });
 });
 
