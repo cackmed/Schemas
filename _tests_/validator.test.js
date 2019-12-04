@@ -31,5 +31,5 @@ describe('Validator', () => {
       expect(validator.validate(person)).toEqual(23);
     });
 
+  });
 });
-
